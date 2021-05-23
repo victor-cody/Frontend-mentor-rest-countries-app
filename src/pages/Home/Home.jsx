@@ -40,7 +40,9 @@ const Home = () => {
 	return (
 		<section>
 			<div className="container">
-				<SearchBar/>
+				<div className="row">
+					<SearchBar />
+				</div>
 				{isPending && <h3 className="text-danger">Geting Countries...</h3>}
 				<div className="row justify-content-center row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xlg-4">
 					{
