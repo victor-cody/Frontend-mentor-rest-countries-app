@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 
 import Country from '../../components/country/country';
+import Filter from '../../components/Filter/Filter';
 import SearchBar from '../../components/search-bar/SearchBar';
 import { GlobalContext } from '../../Context/GlobalState';
 
@@ -13,7 +14,7 @@ const Home = () => {
 	/**Geting our countries from the API */
 	const fetchData = async () => {
 		try {
-			let countries = await fetch('https://restcountries.eu/rest/v2/all?fields=name;captial;flag;region;population');
+			let countries = await fetch('https://restcountries.eu/rest/v2/all');
 			if (!countries.ok) {
 				throw Error('something wrong, çould not connect to resource')
 			}
@@ -34,7 +35,7 @@ const Home = () => {
 		return () => {
 			abort.abort();
 		}
-	}, [])
+	})
 
 
 	return (
@@ -42,6 +43,7 @@ const Home = () => {
 			<div className="container">
 				<div className="row">
 					<SearchBar />
+					<Filter/>
 				</div>
 				{isPending && <h3 className="text-danger">Geting Countries...</h3>}
 				<div className="row justify-content-center row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xlg-4">
@@ -49,6 +51,7 @@ const Home = () => {
 						countries.length > 0 && countries.map((country, id) => (
 							<Country
 								key={`country-${id}`}
+								country={country}
 							/>
 						))
 					}
