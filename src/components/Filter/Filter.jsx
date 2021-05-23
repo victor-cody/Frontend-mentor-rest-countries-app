@@ -18,7 +18,7 @@ return (
 	<select
 		name="filter"
 		id="filter-region"
-		className=""
+		className="form-control border-0 outline-none"
 		onChange = {handelFilter}
 	>
 		<optgroup>
